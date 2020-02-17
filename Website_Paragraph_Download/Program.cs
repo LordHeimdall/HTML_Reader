@@ -15,23 +15,25 @@ namespace HTML_Reader
             string Scan_Result;
             string Company_Start = "<h1 class=\"title light big white\">";
             string Company_End = "</h1>";
+            string Path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string File_Name = "Test.txt";
             getBetween Company_Class = new getBetween();
-
             using (WebClient client = new WebClient())
             {
                 try
                 {
                     //IF THE FILE ISNT FOUND, WE CREATE IT
-                    if (File.Exists(@"%DEFAULTUSERPROFILE%.\Test.txt"))
+                    if (File.Exists(Path + @"\Test.txt"))
                     {
                         Console.WriteLine("File exists, proceeding...\n");
                     }
                     else {
                         Console.WriteLine("Creating File...\n");
-                        File.Create(@"%DEFAULTUSERPROFILE%.\Test.txt");
+                        var MyFile = File.Create(File_Name);
+                        MyFile.Close();
                     }
 
-                   for (int i = 30; i <= 50; i++)   //LOOPING THROUGH THE DIFFERENT ID'S...
+                   for (int i = 30; i <= 50; i++)   //LOOPING THROUGH THE DIFFERENT ID'S
                    {
                     Console.WriteLine("Extracting from " + i + "Out of 50");
                     HttpWebRequest myRequest = (HttpWebRequest)WebRequest.Create("https://rae.inadem.gob.mx/providers/provider/id/" + i);
@@ -52,7 +54,7 @@ namespace HTML_Reader
                     Scan_Result = Company_Class.GetBetween(Result_SR, Company_Start, Company_End);
                     
                     //APPENDING RESULT TO TEXT FILE
-                    File.AppendAllText(@"%DEFAULTUSERPROFILE%.\Test.txt", "Company: " + Scan_Result + "\n");
+                    File.AppendAllText(Path + @"\Test.txt", "Company: " + Scan_Result + "\n");
                     }
                }
                 catch (Exception e) {
