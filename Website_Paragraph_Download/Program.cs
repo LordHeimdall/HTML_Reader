@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Net;
-using System.Text.RegularExpressions;
 
 //Created by LordHeimdall
 
@@ -60,7 +59,8 @@ namespace HTML_Reader
                 catch (Exception e) {
                     Console.WriteLine("Error " + e);
                 }
-                   
+                Console.ReadLine();
+                Environment.Exit(0);
             }
 
         }
