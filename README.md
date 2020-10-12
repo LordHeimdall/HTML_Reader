@@ -1,4 +1,4 @@
-# HTML - Scraping
+# Web - Scraping
 
 Loops through a given URL (through ID's or whatever), gets what's between two given strings and writes it to a text file.
 
